@@ -1,0 +1,27 @@
+#!/sbin/runscript
+# Copyright 1999-2004 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/fam/files/famd,v 1.4 2004/10/28 13:06:34 foser Exp $
+
+depend() {
+	need mpd
+	after mpd
+}
+
+start() {
+	sh /etc/conf.d/lastfmsubmitd
+	ebegin "Starting LastMP"
+	start-stop-daemon --start --quiet --exec /usr/bin/lastmp
+	start-stop-daemon --start --quiet --exec /usr/bin/lastfmsubmitd
+	eend $?
+
+}
+
+stop() {
+
+	ebegin "Stopping LastMP"
+	start-stop-daemon --stop --quiet --exec /usr/bin/lastmp
+	start-stop-daemon --stop --quiet --exec /usr/bin/lastfmsubmitd
+	eend $?
+
+}
