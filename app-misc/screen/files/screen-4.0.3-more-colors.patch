@@ -1,0 +1,11 @@
+--- screen.c	2009-11-24 23:13:59.842415950 +0100
++++ screen.new.c	2009-11-24 23:15:45.591665381 +0100
+@@ -2085,7 +2085,7 @@
+ #endif
+ 
+ static char winmsg_buf[MAXSTR];
+-#define MAX_WINMSG_REND 16	/* rendition changes */
++#define MAX_WINMSG_REND 128	/* rendition changes */
+ static int winmsg_rend[MAX_WINMSG_REND];
+ static int winmsg_rendpos[MAX_WINMSG_REND];
+ static int winmsg_numrend;

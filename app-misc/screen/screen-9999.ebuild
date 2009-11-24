@@ -60,6 +60,8 @@ src_unpack() {
 	# This seems to be already included in current CVS :P
 	#epatch "${FILESDIR}"/4.0.2-windowlist-multiuser-fix.patch
 
+	epatch "${FILESDIR}"/screen-4.0.3-more-colors.patch
+
 	# Fix manpage.
 	sed -i \
 		-e "s:/usr/local/etc/screenrc:/etc/screenrc:g" \
