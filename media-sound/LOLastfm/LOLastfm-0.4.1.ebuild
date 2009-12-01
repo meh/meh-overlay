@@ -13,11 +13,11 @@ SRC_URI="http://github.com/meh/LOLastfm/tarball/LOLastfm-${PV}"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="amd64 x86"
-IUSE="+services"
+IUSE="small"
 
 DEPEND="
-services? ( >=dev-lang/perl-5.8.1[ithreads] )
-!services? ( dev-lang/perl )
+!small? ( >=dev-lang/perl-5.8.1[ithreads] )
+ small? ( dev-lang/perl )
 "
 RDEPEND="${DEPEND}"
 
@@ -29,8 +29,16 @@ src_unpack() {
 src_install() {
 	cd ${WORKDIR}/$(ls)
 
-	mv bin/LOLastfm.pl LOLastfm
-	dobin LOLastfm
+	if use small; then
+		mv bin/LOLastfm-small.pl LOLastfm
+		dobin LOLastfm
+	else
+		mv bin/LOLastfm.pl LOLastfm
+		dobin LOLastfm
+	fi
+
+	mv bin/LOLastfm-set.pl LOLastfm-set
+	dobin LOLastfm-set
 
 	doexe etc/init.d/LOLastfm
 
