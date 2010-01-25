@@ -1,0 +1,37 @@
+# ChangeLog for media-sound/lmms
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  24 Feb 2009; Thomas Kuther <gimpel@sonnenkinder.org>
+  -files/lmms-qt4_configure_gentoo.patch, -files/lmms-9999-acinclude.patch,
+  -lmms-0.3.2.ebuild, lmms-9999-r1.ebuild:
+  lmms goes git, cleanup
+
+  17 Sep 2008; Thomas Kuther <gimpel@sonnenkinder.org>
+  -lmms-0.4.0_beta2.ebuild, +lmms-0.4.0_rc1.ebuild:
+  version bump
+
+  24 Aug 2008; Thomas Kuther <gimpel@sonnenkinder.org>
+  -lmms-0.4.0_beta1.ebuild, +lmms-0.4.0_beta2.ebuild:
+  version bump
+
+  08 Aug 2008; Thomas Kuther <gimpel@sonnenkinder.org>
+  -lmms-0.4.0_alpha2.ebuild, +lmms-0.4.0_beta1.ebuild, lmms-9999-r1.ebuild:
+  version bump, uses cmake now.
+
+  06 Aug 2008; Frieder Buerzele <evermind@tuxfamily.org>;
+  lmms-9999-r1.ebuild:
+  fixed qt4_min... QA msg
+
+  15 Jul 2008; Thomas Kuther <gimpel@sonnenkinder.org>
+  +lmms-0.4.0_alpha2.ebuild:
+  testing ebuild for 0.4.0-aplha
+
+  14 Jun 2008; Thomas Kuther <gimpel@sonnenkinder.org> -lmms-0.1.4.ebuild,
+  -lmms-0.2.1-r1.ebuild, -lmms-0.3.0.ebuild, -lmms-0.3.0-r1.ebuild,
+  +lmms-0.3.2.ebuild:
+  version bump
+
+  17 Dec 2007; Thomas Kuther <gimpel@sonnenkinder.org> ChangeLog:
+  added a changelog
+
