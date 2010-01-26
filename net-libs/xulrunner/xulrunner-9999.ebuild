@@ -31,6 +31,7 @@ RDEPEND="java? ( >=virtual/jre-1.4 )
 	>=x11-libs/cairo-1.8.8[X]
 	x11-libs/pango[X]
 	x11-libs/libXt
+	<=x11-libs/pixman-0.17.2
 	networkmanager? ( net-wireless/wireless-tools )
 	libnotify? ( >=x11-libs/libnotify-0.4 )"
 
