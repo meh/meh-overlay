@@ -214,7 +214,7 @@ EOF
 		${MOZILLA_FIVE_HOME}/defaults/autoconfig
 
 	# Plugins dir
-	dosym ../nsbrowser/plugins "${MOZILLA_FIVE_HOME}"/plugins \
+	dosym ../nsbrowser/plugins "/usr/$(get_libdir)/firefox-${FIR_VERSION}/plugins" \
 		|| die "failed to symlink"
 
 	# very ugly hack to make firefox not sigbus on sparc
