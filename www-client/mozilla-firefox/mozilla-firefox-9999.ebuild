@@ -212,6 +212,15 @@ EOF
 
 	dosym /usr/$(get_libdir)/xulrunner-${MAJ_PV}/defaults/autoconfig \
 		${MOZILLA_FIVE_HOME}/defaults/autoconfig
+
+	# Plugins dir
+	dosym ../nsbrowser/plugins "${MOZILLA_FIVE_HOME}"/plugins \
+		|| die "failed to symlink"
+
+	# very ugly hack to make firefox not sigbus on sparc
+	use sparc && { sed -e 's/Firefox/FirefoxGentoo/g' \
+					 -i "${D}/${MOZILLA_FIVE_HOME}/application.ini" || \
+					 die "sparc sed failed"; }
 }
 
 pkg_postinst() {
