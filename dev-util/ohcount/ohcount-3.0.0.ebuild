@@ -14,7 +14,7 @@ IUSE=""
 
 S="${WORKDIR}"
 
-DEPEND="dev-ruby/rake dev-util/ragel"
+DEPEND=""
 
 src_compile() {
 	cd ${S}

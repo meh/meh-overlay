@@ -1,0 +1,18 @@
+#!/sbin/runscript
+# Kaid script, 21 october 2004, A. Loermans
+
+depend() {
+    need net
+}
+
+start() {
+    ebegin "Starting kaid"
+    /usr/games/bin/kaid /etc/kaid.conf > /var/log/kaid.log &
+    eend $?
+}
+
+stop() {
+    ebegin "Stopping kaid"
+    killall -9 kaid
+    eend $?
+}
