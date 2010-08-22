@@ -14,7 +14,7 @@ SRC_URI=""
 EHG_REPO_URI="http://hg.mozilla.org/mozilla-central"
 EHG_PROJECT=mozilla-central
 
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS=""
 SLOT="1.9"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 IUSE="+alsa debug libnotify +networkmanager"
