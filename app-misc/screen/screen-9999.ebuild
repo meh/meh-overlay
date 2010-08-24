@@ -38,20 +38,21 @@ src_unpack() {
 	cvs_src_unpack ${A}
 	cd "${S}"
 
+
 	# Bug 31070: configure problem which affects alpha
 	# (13 Jan 2004 agriffis)
-	epatch "${FILESDIR}"/screen-4.0.1-vsprintf.patch
+#	epatch "${FILESDIR}"/screen-4.0.1-vsprintf.patch
 
 	# uclibc doesnt have sys/stropts.h
-	if ! (echo '#include <sys/stropts.h>' | $(tc-getCC) -E - &>/dev/null) ; then
-		epatch "${FILESDIR}"/4.0.2-no-pty.patch
-	fi
+#	if ! (echo '#include <sys/stropts.h>' | $(tc-getCC) -E - &>/dev/null) ; then
+#		epatch "${FILESDIR}"/4.0.2-no-pty.patch
+#	fi
 
 	# Don't use utempter even if it is found on the system
-	epatch "${FILESDIR}"/4.0.2-no-utempter.patch
+#	epatch "${FILESDIR}"/4.0.2-no-utempter.patch
 
 	# Don't link against libelf even if it is found on the system
-	epatch "${FILESDIR}"/4.0.2-no-libelf.patch
+#	epatch "${FILESDIR}"/4.0.2-no-libelf.patch
 
 	# Patch for time function on 64bit systems
 	#epatch "${FILESDIR}"/4.0.2-64bit-time.patch
