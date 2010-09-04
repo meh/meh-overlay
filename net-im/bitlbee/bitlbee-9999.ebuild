@@ -1,13 +1,13 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/bitlbee/bitlbee-1.2.6a.ebuild,v 1.1 2010/04/29 21:40:29 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/bitlbee/bitlbee-1.2.7.ebuild,v 1.2 2010/08/10 17:56:57 hwoarang Exp $
 
-EAPI="1"
-inherit eutils toolchain-funcs confutils
+EAPI="3"
+inherit eutils toolchain-funcs confutils bzr
 
 DESCRIPTION="irc to IM gateway that support multiple IM protocols"
 HOMEPAGE="http://www.bitlbee.org/"
-SRC_URI="http://get.bitlbee.org/src/${P}.tar.gz"
+EBZR_REPO_URI="http://code.bitlbee.org/bitlbee"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -66,7 +66,7 @@ pkg_setup() {
 }
 
 src_unpack() {
-	unpack ${A}
+	bzr_src_unpack
 	cd "${S}"
 
 	sed -i \
@@ -115,12 +115,15 @@ src_compile() {
 
 	sed -i \
 		-e "s/CFLAGS=.*$/CFLAGS=${CFLAGS}/" \
+		-e "/^EFLAGS/s:=:&${LDFLAGS} :" \
 		Makefile.settings || die "sed failed"
 
 	emake || die "make failed"
 }
 
 src_install() {
+	touch doc/user-guide/help.txt
+
 	make install DESTDIR="${D}" || die "install failed"
 	make install-etc DESTDIR="${D}" || die "install failed"
 	make install-doc DESTDIR="${D}" || die "install failed"

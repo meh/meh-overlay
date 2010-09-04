@@ -1,0 +1,28 @@
+#!/sbin/runscript
+# Copyright 1999-2010 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+PIDFILE_SKYPE=/var/run/skyped/skype.pid
+PIDFILE_SKYPED=/var/run/skyped/skyped.pid
+
+SKYPE_EXEC=/usr/bin/skype
+SKYPED_EXEC=/usr/bin/skyped
+
+depend() {
+    need net
+}
+
+start() {
+    ebegin "Starting skyped"
+
+    start-stop-daemon --start --user ${SKYPED_USER} --group ${SKYPED_GROUP} --background --make-pidfile --pidfile ${PIDFILE_SKYPE} --exec ${SKYPE_EXEC}
+    start-stop-daemon --start --user ${SKYPED_USER} --group ${SKYPED_GROUP} --background --make-pidfile --pidfile ${PIDFILE_SKYPED} --exec ${SKYPED_EXEC} -- -n -H ${SKYPED_HOST} -p ${SKYPED_PORT}
+}
+
+stop() {
+    ebegin "Stopping skyped"
+
+    start-stop-daemon --stop --pidfile ${PIDFILE_SKYPE}
+    start-stop-daemon --stop --pidfile ${PIDFILE_SKYPED}
+}
