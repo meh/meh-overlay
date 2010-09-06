@@ -1,0 +1,11 @@
+--- doc/Makefile	2010-09-05 18:42:04.642708000 +0200
++++ doc/Makefile.new	2010-09-05 19:54:17.579850807 +0200
+@@ -5,7 +5,7 @@
+ 
+ all:
+ 	# Only build the docs if this is a bzr checkout
+-	test ! -d ../.bzr || $(MAKE) -C user-guide
++	$(MAKE) -C user-guide
+ 
+ install:
+ 	mkdir -p $(DESTDIR)$(MANDIR)/man8/ $(DESTDIR)$(MANDIR)/man5/

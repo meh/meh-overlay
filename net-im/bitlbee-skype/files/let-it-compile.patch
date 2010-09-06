@@ -1,0 +1,16 @@
+--- skype.c	2010-09-05 19:11:03.630078435 +0200
++++ skype.new.c	2010-09-05 19:16:10.710827967 +0200
+@@ -31,13 +31,6 @@
+ #define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
+ 
+ /*
+- * Compatibility with BitlBee 1.3+
+- */
+-#if BITLBEE_VERSION_CODE < BITLBEE_VER(1, 3, 0)
+-#define B_EV_IO_READ GAIM_INPUT_READ
+-#endif
+-
+-/*
+  * Enumerations
+  */
+ 

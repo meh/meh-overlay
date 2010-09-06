@@ -7,12 +7,11 @@ inherit eutils toolchain-funcs confutils bzr
 
 DESCRIPTION="irc to IM gateway that support multiple IM protocols"
 HOMEPAGE="http://www.bitlbee.org/"
-EBZR_REPO_URI="http://code.bitlbee.org/bitlbee"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~sparc ~x86 ~x86-fbsd"
-IUSE="debug gnutls ipv6 +jabber msn nss +oscar ssl test twitter +yahoo xinetd" # ldap - Bug 195758
+IUSE="killer debug +plugins gnutls ipv6 nss ssl test +jabber msn oscar twitter yahoo purple xinetd" # ldap - Bug 195758
 
 COMMON_DEPEND=">=dev-libs/glib-2.4
 	msn? ( gnutls? ( net-libs/gnutls )
@@ -22,8 +21,10 @@ COMMON_DEPEND=">=dev-libs/glib-2.4
 	jabber? ( gnutls? ( net-libs/gnutls )
 		!gnutls? ( nss? ( dev-libs/nss ) )
 		!gnutls? ( !nss? ( ssl? ( dev-libs/openssl ) ) )
-		)"
-	# ldap? ( net-nds/openldap )"
+		)
+	
+	app-text/xmlto"
+
 DEPEND="${COMMON_DEPEND}
 	dev-util/pkgconfig
 	test? ( dev-libs/check )"
@@ -31,6 +32,12 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	virtual/logger
 	xinetd? ( sys-apps/xinetd )"
+
+if use killer; then
+	EBZR_REPO_URI="http://code.bitlbee.org/killerbee"
+else
+	EBZR_REPO_URI="http://code.bitlbee.org/bitlbee"
+fi
 
 pkg_setup() {
 	elog "Note: Support for all IM protocols are controlled by use flags."
@@ -78,6 +85,8 @@ src_unpack() {
 	sed -i \
 		-e "s@mozilla-nss@nss@g" \
 		configure || die "sed failed in configure"
+
+	epatch "${FILESDIR}"/make-docs.patch
 }
 
 src_compile() {
@@ -85,7 +94,7 @@ src_compile() {
 	local myconf="--ldap=0"
 
 	# setup protocol, ipv6 and debug
-	for flag in debug ipv6 msn jabber oscar twitter yahoo ; do
+	for flag in debug ipv6 msn jabber oscar twitter yahoo purple plugins; do
 		if use ${flag} ; then
 			myconf="${myconf} --${flag}=1"
 		else
@@ -122,12 +131,11 @@ src_compile() {
 }
 
 src_install() {
-	touch doc/user-guide/help.txt
-
 	make install DESTDIR="${D}" || die "install failed"
 	make install-etc DESTDIR="${D}" || die "install failed"
 	make install-doc DESTDIR="${D}" || die "install failed"
 	make install-dev DESTDIR="${D}" || die "install failed"
+
 	keepdir /var/lib/bitlbee
 	fperms 700 /var/lib/bitlbee
 	fowners bitlbee:bitlbee /var/lib/bitlbee
