@@ -19,7 +19,7 @@ KEYWORDS="~amd64 ~x86"
 # plugin are built accordingly.
 IUSE="daemon plugin"
 DEPEND="daemon? ( >=net-im/skype-1.4.0.99
-		>=dev-python/skype4py-0.9.28.7
+		<=dev-python/skype4py-1.0.32.0
 		>=dev-python/pygobject-2.8.0
 		dev-python/python-gnutls )
 	plugin? ( >=net-im/bitlbee-1.2.3 )"
