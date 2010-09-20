@@ -4,12 +4,11 @@
 
 EAPI=3
 
-JAVA_PKG_IUSE="doc source"
-inherit subversion java-pkg-2 java-ant-2
+inherit java-pkg-2
 
 DESCRIPTION="Closure Compiler is a JavaScript optimizing compiler."
 HOMEPAGE="http://code.google.com/p/closure-compiler/"
-ESVN_REPO_URI="http://closure-compiler.googlecode.com/svn/trunk/"
+SRC_URI="http://closure-compiler.googlecode.com/files/compiler-${PV}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
@@ -19,20 +18,8 @@ IUSE=""
 RDEPEND=">=virtual/jre-1.5"
 DEPEND=">=virtual/jdk-1.5"
 
-src_unpack() {
-	subversion_src_unpack
-}
-
-src_configure() {
-	echo 'HURR DURR'
-}
-
-src_compile() {
-	ant
-}
-
 src_install() {
-	java-pkg_newjar build/compiler.jar closure-compiler.jar
+	java-pkg_newjar compiler.jar closure-compiler.jar
 
 	java-pkg_dolauncher closure-compiler --jar closure-compiler.jar
 }
