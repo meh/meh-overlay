@@ -25,7 +25,7 @@ DEPEND="daemon? ( >=net-im/skype-1.4.0.99
 	plugin? ( >=net-im/bitlbee-1.2.3 )"
 
 src_configure() {
-	epatch "${FILESDIR}"/let-it-compile.patch
+#	epatch "${FILESDIR}"/let-it-compile.patch
 
 	make autogen
 	./configure --prefix=/ --sysconfdir=/etc
